@@ -1987,9 +1987,29 @@ body {
 }
 
 .optional {
-    color: var(--text-light);
+    color: #6b7280;
     font-size: 0.85em;
     font-weight: 400;
+}
+
+/* Fix contrast issues */
+.ad-label {
+    color: #374151;
+    font-weight: 500;
+}
+
+.input-hint {
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.activity-desc, .climate-temp {
+    color: #374151;
+}
+
+.activity-card.active .activity-desc,
+.climate-card.active .climate-temp {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .mobile-hide {

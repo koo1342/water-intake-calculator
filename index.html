@@ -1,39 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Water Intake Calculator - How Much Water Should I Drink a Day</title>
-    <meta name="description" content="Free daily water intake calculator. Enter your weight, age and activity level to get your exact daily water need in ounces and liters. Scientifically accurate results in seconds.">
-    <meta name="keywords" content="daily water intake calculator, how much water should I drink a day calculator, water calculator, hydration calculator">
+    <meta name="description"
+        content="Free daily water intake calculator. Enter your weight, age and activity level to get your exact daily water need in ounces and liters. Scientifically accurate results in seconds.">
+    <meta name="keywords"
+        content="daily water intake calculator, how much water should I drink a day calculator, water calculator, hydration calculator">
+    <!-- Critical CSS Inline -->
+    <style>
+        /* Critical above-the-fold styles */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding-top: 70px;
+            background: #f8fafc
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            height: 70px
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #2563eb
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block
+        }
+
+        .hero-subtitle {
+            display: block;
+            font-weight: 300;
+            opacity: 0.9
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem
+        }
+
+        .stat-item {
+            text-align: center
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px
+        }
+
+        @media(max-width:768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem
+            }
+
+            .hero-title {
+                font-size: 2.5rem
+            }
+
+            .nav-container {
+                padding: 0 1rem
+            }
+        }
+    </style>
+
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    </noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
-    
+
     <!-- SEO Meta Tags -->
     <meta property="og:title" content="Advanced Daily Water Intake Calculator - Free Hydration Guide">
-    <meta property="og:description" content="Calculate your personalized daily water intake with our advanced algorithm. Free, accurate, and scientifically-backed hydration recommendations.">
+    <meta property="og:description"
+        content="Calculate your personalized daily water intake with our advanced algorithm. Free, accurate, and scientifically-backed hydration recommendations.">
     <meta property="og:image" content="https://yourdomain.com/water-calculator-preview.jpg">
     <meta property="og:url" content="https://yourdomain.com">
     <meta name="twitter:card" content="summary_large_image">
-    
+
     <!-- Performance Optimization -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="script.js" as="script">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
-    
+
     <!-- FAQ Schema Markup -->
     <script type="application/ld+json">
     {
@@ -68,6 +215,7 @@
     }
     </script>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -101,7 +249,8 @@
                 <span class="hero-subtitle">How Much Water Should I Drink a Day</span>
             </h1>
             <p class="hero-description">
-                Enter your weight, age and activity level below and get your exact daily water need in ounces and liters. Free, accurate, and scientifically-backed results in 30 seconds.
+                Enter your weight, age and activity level below and get your exact daily water need in ounces and
+                liters. Free, accurate, and scientifically-backed results in 30 seconds.
             </p>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -127,15 +276,11 @@
         <div class="ad-placeholder ad-leaderboard" id="top-ad">
             <!-- AdSense Leaderboard Ad Code Goes Here -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-                    crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXX"
-                 data-ad-slot="XXXXXXXXXX"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX"
+                data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
     </div>
@@ -145,7 +290,8 @@
         <div class="container">
             <div class="section-header">
                 <h2>Calculate Your Daily Water Intake</h2>
-                <p>Enter your weight, age and activity level below to get your personalized daily water recommendation in ounces and liters</p>
+                <p>Enter your weight, age and activity level below to get your personalized daily water recommendation
+                    in ounces and liters</p>
             </div>
 
             <div class="calculator-grid">
@@ -154,14 +300,15 @@
                     <div class="panel-header">
                         <h3><i class="fas fa-user-cog"></i> Personal Information</h3>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="weight" class="form-label">
                             <i class="fas fa-weight"></i>
                             Body Weight <span class="required">*</span>
                         </label>
                         <div class="input-group">
-                            <input type="number" id="weight" class="form-input" placeholder="Enter your weight" min="1" max="500" required>
+                            <input type="number" id="weight" class="form-input" placeholder="Enter your weight" min="1"
+                                max="500" required>
                             <div class="unit-selector">
                                 <button type="button" class="unit-btn active" data-unit="kg">kg</button>
                                 <button type="button" class="unit-btn" data-unit="lbs">lbs</button>
@@ -176,7 +323,8 @@
                             Height <span class="optional">(Optional)</span>
                         </label>
                         <div class="input-group">
-                            <input type="number" id="height" class="form-input" placeholder="Enter your height" min="50" max="300">
+                            <input type="number" id="height" class="form-input" placeholder="Enter your height" min="50"
+                                max="300">
                             <div class="unit-selector">
                                 <button type="button" class="unit-btn height-unit active" data-unit="cm">cm</button>
                                 <button type="button" class="unit-btn height-unit" data-unit="ft">ft</button>
@@ -193,7 +341,8 @@
                             <i class="fas fa-birthday-cake"></i>
                             Age
                         </label>
-                        <input type="number" id="age" class="form-input" placeholder="Enter your age" min="1" max="120" value="30">
+                        <input type="number" id="age" class="form-input" placeholder="Enter your age" min="1" max="120"
+                            value="30">
                         <div class="input-hint">Age affects hydration needs</div>
                     </div>
 
@@ -314,27 +463,23 @@
                     <div class="ad-label">Advertisement</div>
                     <!-- Replace with your AdSense code -->
                     <div class="ad-placeholder ad-rectangle" id="sidebar-ad-1">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-                                crossorigin="anonymous"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXXX"
-                             data-ad-slot="XXXXXXXXXX"
-                             data-ad-format="rectangle"></ins>
+                        <script async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+                            crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX"
+                            data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
                         <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
+                            (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
                     <div class="ad-placeholder ad-rectangle mobile-hide" style="margin-top: 20px;" id="sidebar-ad-2">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-                                crossorigin="anonymous"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXXX"
-                             data-ad-slot="XXXXXXXXXX"
-                             data-ad-format="rectangle"></ins>
+                        <script async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+                            crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX"
+                            data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
                         <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
+                            (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
                 </div>
@@ -438,14 +583,16 @@
                         <i class="fas fa-sun"></i>
                     </div>
                     <h3>Morning Hydration</h3>
-                    <p>Start your day with 16-20 oz of water to replenish overnight losses and kickstart your metabolism.</p>
+                    <p>Start your day with 16-20 oz of water to replenish overnight losses and kickstart your
+                        metabolism.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">
                         <i class="fas fa-dumbbell"></i>
                     </div>
                     <h3>Exercise Hydration</h3>
-                    <p>Drink 17-20 oz of water 2-3 hours before exercise, and 7-10 oz every 10-20 minutes during activity.</p>
+                    <p>Drink 17-20 oz of water 2-3 hours before exercise, and 7-10 oz every 10-20 minutes during
+                        activity.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">
@@ -471,7 +618,9 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>Science-Based Calculations</h2>
-                    <p>Our advanced algorithm considers multiple factors including body composition, metabolic rate, environmental conditions, and lifestyle factors to provide the most accurate hydration recommendations.</p>
+                    <p>Our advanced algorithm considers multiple factors including body composition, metabolic rate,
+                        environmental conditions, and lifestyle factors to provide the most accurate hydration
+                        recommendations.</p>
                     <div class="features-list">
                         <div class="feature-item">
                             <i class="fas fa-check-circle"></i>
@@ -509,13 +658,16 @@
                 <h2>Frequently Asked Questions</h2>
                 <p>Common questions about daily water intake and our calculator</p>
             </div>
-            
+
             <div class="faq-grid">
                 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <h3 class="faq-question" itemprop="name">How accurate is this daily water intake calculator?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>Our calculator is 98% accurate and based on scientific research from the National Academy of Medicine. It considers your weight, age, activity level, and climate to provide personalized recommendations. The algorithm uses the same methods used by healthcare professionals.</p>
+                            <p>Our calculator is 98% accurate and based on scientific research from the National Academy
+                                of Medicine. It considers your weight, age, activity level, and climate to provide
+                                personalized recommendations. The algorithm uses the same methods used by healthcare
+                                professionals.</p>
                         </div>
                     </div>
                 </div>
@@ -524,7 +676,9 @@
                     <h3 class="faq-question" itemprop="name">Does coffee count towards daily water intake?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>Yes, coffee and tea count towards your daily fluid intake. While caffeine has a mild diuretic effect, the water content in these beverages still contributes to hydration. However, plain water is still the best choice for optimal hydration.</p>
+                            <p>Yes, coffee and tea count towards your daily fluid intake. While caffeine has a mild
+                                diuretic effect, the water content in these beverages still contributes to hydration.
+                                However, plain water is still the best choice for optimal hydration.</p>
                         </div>
                     </div>
                 </div>
@@ -533,7 +687,9 @@
                     <h3 class="faq-question" itemprop="name">What if I exercise twice a day?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>If you exercise twice daily, select "High" or "Extreme" activity level in our calculator. You should also add 12-16 oz of water for each additional hour of intense exercise. Monitor your urine color - it should be pale yellow.</p>
+                            <p>If you exercise twice daily, select "High" or "Extreme" activity level in our calculator.
+                                You should also add 12-16 oz of water for each additional hour of intense exercise.
+                                Monitor your urine color - it should be pale yellow.</p>
                         </div>
                     </div>
                 </div>
@@ -542,7 +698,9 @@
                     <h3 class="faq-question" itemprop="name">How much water should I drink if I'm pregnant?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>Pregnant women need about 30% more water than usual. Check the "Pregnant or Breastfeeding" option in our advanced settings. Generally, this means 10-13 cups (2.3-3 liters) per day, but always consult your healthcare provider.</p>
+                            <p>Pregnant women need about 30% more water than usual. Check the "Pregnant or
+                                Breastfeeding" option in our advanced settings. Generally, this means 10-13 cups (2.3-3
+                                liters) per day, but always consult your healthcare provider.</p>
                         </div>
                     </div>
                 </div>
@@ -551,7 +709,9 @@
                     <h3 class="faq-question" itemprop="name">Can I drink too much water?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>Yes, drinking excessive water can lead to water intoxication or hyponatremia. Our calculator provides safe recommendations based on your body size and activity. Stick to the recommended amount and spread intake throughout the day.</p>
+                            <p>Yes, drinking excessive water can lead to water intoxication or hyponatremia. Our
+                                calculator provides safe recommendations based on your body size and activity. Stick to
+                                the recommended amount and spread intake throughout the day.</p>
                         </div>
                     </div>
                 </div>
@@ -560,7 +720,9 @@
                     <h3 class="faq-question" itemprop="name">Why do I need more water in hot weather?</h3>
                     <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <div itemprop="text">
-                            <p>Hot weather increases water loss through sweating and breathing. Our calculator automatically adjusts for climate - you may need 25-40% more water in hot, humid conditions. Select your climate type for accurate recommendations.</p>
+                            <p>Hot weather increases water loss through sweating and breathing. Our calculator
+                                automatically adjusts for climate - you may need 25-40% more water in hot, humid
+                                conditions. Select your climate type for accurate recommendations.</p>
                         </div>
                     </div>
                 </div>
@@ -605,11 +767,28 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 HydroCalc Pro. All rights reserved.</p>
-                <p class="disclaimer">Disclaimer: This calculator provides general recommendations. Consult healthcare professionals for personalized medical advice.</p>
+                <p class="disclaimer">Disclaimer: This calculator provides general recommendations. Consult healthcare
+                    professionals for personalized medical advice.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Load JavaScript asynchronously -->
+    <script>
+        // Load CSS asynchronously helper
+        function loadCSS(href) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            document.head.appendChild(link);
+        }
+
+        // Ensure fonts load with fallback
+        if (!document.fonts || !document.fonts.ready) {
+            loadCSS('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        }
+    </script>
+    <script defer src="script.js"></script>
 </body>
+
 </html>

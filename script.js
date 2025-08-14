@@ -195,67 +195,84 @@ class AdvancedWaterIntakeCalculator {
     }
 
     handleResponsiveChanges() {
-        const screenWidth = window.innerWidth;
-        const mobileElements = document.querySelectorAll('.mobile-hide');
-        const desktopElements = document.querySelectorAll('.desktop-hide');
+        // Use requestAnimationFrame to batch DOM changes
+        requestAnimationFrame(() => {
+            const screenWidth = window.innerWidth;
+            const mobileElements = document.querySelectorAll('.mobile-hide');
+            const desktopElements = document.querySelectorAll('.desktop-hide');
 
-        if (screenWidth <= 768) {
-            // Mobile view
-            mobileElements.forEach(el => el.style.display = 'none');
-            desktopElements.forEach(el => el.style.display = 'block');
-            
-            // Adjust ad sizes for mobile
-            const adLeaderboards = document.querySelectorAll('.ad-leaderboard');
-            adLeaderboards.forEach(ad => {
-                ad.style.width = '100%';
-                ad.style.maxWidth = '100%';
-                if (screenWidth <= 575) {
-                    ad.style.height = '60px';
-                }
-            });
+            // Batch style changes to prevent forced reflows
+            const styleChanges = [];
 
-            const adRectangles = document.querySelectorAll('.ad-rectangle');
-            adRectangles.forEach(ad => {
-                ad.style.width = '100%';
-                ad.style.maxWidth = '100%';
-                if (screenWidth <= 575) {
-                    ad.style.height = '150px';
-                }
-            });
-        } else {
-            // Desktop view
-            mobileElements.forEach(el => el.style.display = 'block');
-            desktopElements.forEach(el => el.style.display = 'none');
-            
-            // Reset ad sizes for desktop
-            const adLeaderboards = document.querySelectorAll('.ad-leaderboard');
-            adLeaderboards.forEach(ad => {
-                ad.style.width = '728px';
-                ad.style.maxWidth = '100%';
-                ad.style.height = '90px';
-            });
+            if (screenWidth <= 768) {
+                // Mobile view
+                mobileElements.forEach(el => styleChanges.push(() => el.style.display = 'none'));
+                desktopElements.forEach(el => styleChanges.push(() => el.style.display = 'block'));
+                
+                // Adjust ad sizes for mobile
+                const adLeaderboards = document.querySelectorAll('.ad-leaderboard');
+                adLeaderboards.forEach(ad => {
+                    styleChanges.push(() => {
+                        ad.style.width = '100%';
+                        ad.style.maxWidth = '100%';
+                        if (screenWidth <= 575) {
+                            ad.style.height = '60px';
+                        }
+                    });
+                });
 
-            const adRectangles = document.querySelectorAll('.ad-rectangle');
-            adRectangles.forEach(ad => {
-                ad.style.width = '300px';
-                ad.style.maxWidth = '100%';
-                ad.style.height = '250px';
-            });
-        }
+                const adRectangles = document.querySelectorAll('.ad-rectangle');
+                adRectangles.forEach(ad => {
+                    styleChanges.push(() => {
+                        ad.style.width = '100%';
+                        ad.style.maxWidth = '100%';
+                        if (screenWidth <= 575) {
+                            ad.style.height = '150px';
+                        }
+                    });
+                });
+            } else {
+                // Desktop view
+                mobileElements.forEach(el => styleChanges.push(() => el.style.display = 'block'));
+                desktopElements.forEach(el => styleChanges.push(() => el.style.display = 'none'));
+                
+                // Reset ad sizes for desktop
+                const adLeaderboards = document.querySelectorAll('.ad-leaderboard');
+                adLeaderboards.forEach(ad => {
+                    styleChanges.push(() => {
+                        ad.style.width = '728px';
+                        ad.style.maxWidth = '100%';
+                        ad.style.height = '90px';
+                    });
+                });
 
-        // Close mobile menu on resize to desktop
-        if (screenWidth > 768) {
-            const navMenu = document.getElementById('navMenu');
-            const navToggle = document.getElementById('navToggle');
-            if (navMenu && navToggle) {
-                navMenu.classList.remove('active');
-                const icon = navToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                const adRectangles = document.querySelectorAll('.ad-rectangle');
+                adRectangles.forEach(ad => {
+                    styleChanges.push(() => {
+                        ad.style.width = '300px';
+                        ad.style.maxWidth = '100%';
+                        ad.style.height = '250px';
+                    });
+                });
+            }
+
+            // Apply all style changes at once
+            styleChanges.forEach(change => change());
+
+            // Close mobile menu on resize to desktop
+            if (screenWidth > 768) {
+                const navMenu = document.getElementById('navMenu');
+                const navToggle = document.getElementById('navToggle');
+                if (navMenu && navToggle) {
+                    navMenu.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             }
-        }
+        });
     }
 
     initializeFAQ() {
@@ -631,7 +648,11 @@ class AdvancedWaterIntakeCalculator {
             const easeOutCubic = 1 - Math.pow(1 - progress, 3);
             const current = start + (difference * easeOutCubic);
             
-            element.textContent = Math.round(current * 10) / 10;
+            // Batch DOM updates to prevent forced reflows
+            const value = Math.round(current * 10) / 10;
+            if (element.textContent !== value.toString()) {
+                element.textContent = value;
+            }
 
             if (progress < 1) {
                 requestAnimationFrame(updateNumber);
