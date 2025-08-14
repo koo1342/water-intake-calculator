@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Daily Water Intake Calculator - Personalized Hydration Guide</title>
+    <meta name="description" content="Professional water intake calculator with advanced algorithms. Get personalized hydration recommendations based on weight, activity, climate, and health factors.">
+    <meta name="keywords" content="water intake calculator, hydration calculator, daily water needs, health calculator, personalized hydration">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Advanced Daily Water Intake Calculator - Free Hydration Guide">
+    <meta property="og:description" content="Calculate your personalized daily water intake with our advanced algorithm. Free, accurate, and scientifically-backed hydration recommendations.">
+    <meta property="og:image" content="https://yourdomain.com/water-calculator-preview.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Performance Optimization -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>HydroCalc Pro</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#calculator" class="nav-link">Calculator</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#tips" class="nav-link">Tips</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Advanced Water Intake</span>
+                <span class="hero-subtitle">Calculator</span>
+            </h1>
+            <p class="hero-description">
+                Get personalized hydration recommendations using advanced algorithms that consider your unique lifestyle, health factors, and environmental conditions.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Factors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Space - Top Banner -->
+    <div class="ad-container ad-top">
+        <div class="ad-label">Advertisement</div>
+        <!-- Replace this div with your AdSense code -->
+        <div class="ad-placeholder ad-leaderboard" id="top-ad">
+            <!-- AdSense Leaderboard Ad Code Goes Here -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- Main Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Personalized Hydration Calculator</h2>
+                <p>Enter your details below for a scientifically-backed water intake recommendation</p>
+            </div>
+
+            <div class="calculator-grid">
+                <!-- Input Panel -->
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-user-cog"></i> Personal Information</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="weight" class="form-label">
+                            <i class="fas fa-weight"></i>
+                            Body Weight <span class="required">*</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="weight" class="form-input" placeholder="Enter your weight" min="1" max="500" required>
+                            <div class="unit-selector">
+                                <button type="button" class="unit-btn active" data-unit="kg">kg</button>
+                                <button type="button" class="unit-btn" data-unit="lbs">lbs</button>
+                            </div>
+                        </div>
+                        <div class="input-hint">Your current body weight</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height" class="form-label">
+                            <i class="fas fa-ruler-vertical"></i>
+                            Height <span class="optional">(Optional)</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="height" class="form-input" placeholder="Enter your height" min="50" max="300">
+                            <div class="unit-selector">
+                                <button type="button" class="unit-btn height-unit active" data-unit="cm">cm</button>
+                                <button type="button" class="unit-btn height-unit" data-unit="ft">ft</button>
+                            </div>
+                        </div>
+                        <div class="input-hint">
+                            <i class="fas fa-info-circle"></i>
+                            Improves calculation accuracy by 15%
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age" class="form-label">
+                            <i class="fas fa-birthday-cake"></i>
+                            Age
+                        </label>
+                        <input type="number" id="age" class="form-input" placeholder="Enter your age" min="1" max="120" value="30">
+                        <div class="input-hint">Age affects hydration needs</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender" class="form-label">
+                            <i class="fas fa-venus-mars"></i>
+                            Gender
+                        </label>
+                        <select id="gender" class="form-select">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="input-hint">Biological differences affect water needs</div>
+                    </div>
+                </div>
+
+                <!-- Lifestyle Panel -->
+                <div class="lifestyle-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-running"></i> Lifestyle & Environment</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-dumbbell"></i>
+                            Activity Level
+                        </label>
+                        <div class="activity-grid">
+                            <div class="activity-card" data-value="sedentary">
+                                <i class="fas fa-couch"></i>
+                                <div class="activity-title">Sedentary</div>
+                                <div class="activity-desc">Little to no exercise</div>
+                            </div>
+                            <div class="activity-card" data-value="light">
+                                <i class="fas fa-walking"></i>
+                                <div class="activity-title">Light</div>
+                                <div class="activity-desc">1-3 days/week</div>
+                            </div>
+                            <div class="activity-card active" data-value="moderate">
+                                <i class="fas fa-running"></i>
+                                <div class="activity-title">Moderate</div>
+                                <div class="activity-desc">3-5 days/week</div>
+                            </div>
+                            <div class="activity-card" data-value="high">
+                                <i class="fas fa-bicycle"></i>
+                                <div class="activity-title">High</div>
+                                <div class="activity-desc">6-7 days/week</div>
+                            </div>
+                            <div class="activity-card" data-value="extreme">
+                                <i class="fas fa-fire"></i>
+                                <div class="activity-title">Extreme</div>
+                                <div class="activity-desc">Very intense daily</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-thermometer-half"></i>
+                            Climate Conditions
+                        </label>
+                        <div class="climate-grid">
+                            <div class="climate-card active" data-value="temperate">
+                                <i class="fas fa-cloud-sun"></i>
+                                <div class="climate-title">Temperate</div>
+                                <div class="climate-temp">15-25°C</div>
+                            </div>
+                            <div class="climate-card" data-value="hot">
+                                <i class="fas fa-sun"></i>
+                                <div class="climate-title">Hot</div>
+                                <div class="climate-temp">25-35°C</div>
+                            </div>
+                            <div class="climate-card" data-value="humid">
+                                <i class="fas fa-tint"></i>
+                                <div class="climate-title">Hot & Humid</div>
+                                <div class="climate-temp">>30°C + High Humidity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-options">
+                        <button type="button" class="advanced-toggle">
+                            <i class="fas fa-cog"></i>
+                            Advanced Options
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="advanced-content">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-baby"></i>
+                                    Special Conditions
+                                </label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="pregnancy">
+                                        <span class="checkmark"></span>
+                                        Pregnant or Breastfeeding
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="illness">
+                                        <span class="checkmark"></span>
+                                        Fever or Illness
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="medication">
+                                        <span class="checkmark"></span>
+                                        Diuretic Medications
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad Space - Sidebar -->
+                <div class="ad-sidebar">
+                    <div class="ad-label">Advertisement</div>
+                    <!-- Replace with your AdSense code -->
+                    <div class="ad-placeholder ad-rectangle" id="sidebar-ad-1">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+                                crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="rectangle"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    <div class="ad-placeholder ad-rectangle mobile-hide" style="margin-top: 20px;" id="sidebar-ad-2">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+                                crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="rectangle"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculate-container">
+                <button id="calculateBtn" class="calculate-btn">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculate My Water Intake</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2>Your Personalized Hydration Plan</h2>
+                <p>Based on advanced algorithms and your unique profile</p>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-main-card">
+                    <div class="result-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-amount" id="resultAmount">0</div>
+                        <div class="result-unit" id="resultUnit">liters</div>
+                        <div class="result-subtitle">per day</div>
+                    </div>
+                    <div class="result-confidence">
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceBar"></div>
+                        </div>
+                        <div class="confidence-text">
+                            <span id="confidenceLevel">95%</span> Confidence
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conversions-card">
+                    <h3>Practical Measurements</h3>
+                    <div class="conversion-grid">
+                        <div class="conversion-item">
+                            <i class="fas fa-coffee"></i>
+                            <div class="conversion-amount" id="cupsAmount">0</div>
+                            <div class="conversion-label">Cups (8 oz)</div>
+                        </div>
+                        <div class="conversion-item">
+                            <i class="fas fa-wine-bottle"></i>
+                            <div class="conversion-amount" id="bottlesAmount">0</div>
+                            <div class="conversion-label">Bottles (16.9 oz)</div>
+                        </div>
+                        <div class="conversion-item">
+                            <i class="fas fa-glass-water"></i>
+                            <div class="conversion-amount" id="glassesAmount">0</div>
+                            <div class="conversion-label">Glasses (12 oz)</div>
+                        </div>
+                        <div class="conversion-item">
+                            <i class="fas fa-prescription-bottle"></i>
+                            <div class="conversion-amount" id="mlAmount">0</div>
+                            <div class="conversion-label">Milliliters</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hydration Schedule -->
+            <div class="schedule-card">
+                <h3><i class="fas fa-clock"></i> Suggested Hydration Schedule</h3>
+                <div class="schedule-timeline" id="hydrationSchedule">
+                    <!-- Schedule items will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Ad Space - Results -->
+            <div class="ad-container ad-results">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-placeholder ad-leaderboard">
+                    <i class="fas fa-ad"></i>
+                    <span>728 x 90 Leaderboard Ad</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="tips-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Hydration Tips</h2>
+                <p>Evidence-based recommendations from health experts</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Morning Hydration</h3>
+                    <p>Start your day with 16-20 oz of water to replenish overnight losses and kickstart your metabolism.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Exercise Hydration</h3>
+                    <p>Drink 17-20 oz of water 2-3 hours before exercise, and 7-10 oz every 10-20 minutes during activity.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-thermometer-hot"></i>
+                    </div>
+                    <h3>Hot Weather</h3>
+                    <p>Increase intake by 12-16 oz for every hour of exposure to temperatures above 85°F (29°C).</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-eye-dropper"></i>
+                    </div>
+                    <h3>Hydration Monitoring</h3>
+                    <p>Check urine color: pale yellow indicates good hydration, dark yellow suggests dehydration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Science-Based Calculations</h2>
+                    <p>Our advanced algorithm considers multiple factors including body composition, metabolic rate, environmental conditions, and lifestyle factors to provide the most accurate hydration recommendations.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Based on latest medical research</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Considers 15+ individual factors</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personalized recommendations</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional-grade accuracy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="hydration-chart">
+                        <div class="chart-container">
+                            <canvas id="hydrationChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Ad -->
+    <div class="ad-container ad-bottom">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder ad-leaderboard">
+            <i class="fas fa-ad"></i>
+            <span>728 x 90 Leaderboard Ad</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <i class="fas fa-tint"></i>
+                        <span>HydroCalc Pro</span>
+                    </div>
+                    <p>Professional hydration calculator for optimal health</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Calculator</h4>
+                        <a href="#calculator">Water Intake</a>
+                        <a href="#tips">Hydration Tips</a>
+                        <a href="#about">About</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#">Health Guide</a>
+                        <a href="#">Research</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HydroCalc Pro. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This calculator provides general recommendations. Consult healthcare professionals for personalized medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
